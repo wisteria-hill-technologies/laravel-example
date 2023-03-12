@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/send-email', function () {
+    Log::info('test mail endpoint!');
+    Mail::raw('This is a test!....', function($message) {
+        $message->to('n_fujioka03@hotmail.com')->subject('Testing 123...');
+    });
+    return 'email sent';
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
